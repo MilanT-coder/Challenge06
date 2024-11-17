@@ -1,0 +1,70 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+
+.grid {
+  display: flex;
+  flex-basis: 70%;
+  flex-wrap: wrap;
+
+  .img-wrap {
+    display: flex;
+    flex-basis: 33.33%;
+    position: relative;
+    img {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s linear 0s, opacity 800ms;
+    }
+    .img-text {
+      color: var.$hover-elements-color;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      border-top: 2px solid var.$hover-elements-color;
+      border-bottom: 2px solid var.$hover-elements-color;
+      text-align: center;
+      z-index: -1;
+      padding: 15px;
+      p {
+        margin: auto;
+      }
+    }
+  }
+  .img-wrap:hover {
+    img {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s linear 800ms, opacity 300ms;
+    }
+    .img-text {
+      visibility: visible;
+    }
+  }
+}
+@include mix.tablet-styles {
+  .grid {
+    width: 100%;
+    .img-wrap {
+      flex-basis: 50%;
+    }
+  }
+}
+@include mix.mobile-l-styles {
+  .grid {
+    width: 100%;
+    .img-wrap {
+      flex-basis: 100%;
+    }
+  }
+}
+@include mix.four-k-styles {
+  .grid {
+    .img-wrap {
+        img {
+            width: 100%;
+        }
+    }
+  }  
+}

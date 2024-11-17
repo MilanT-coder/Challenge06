@@ -1,0 +1,106 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 30%;
+  height: 100vh;
+  background-color: var.$background-color-base;
+  color: var.$text-color-base;
+  position: sticky;
+  top: 0;
+
+  .inner-wrap {
+    width: 80%;
+    height: 100vh;
+    margin: 100px 0px;
+
+    ul {
+      margin-top: 70px;
+      padding-left: 0px;
+
+      li {
+        list-style-type: none;
+        line-height: 50px;
+        a {
+          text-decoration: none;
+          color: var.$text-color-base;
+          position: relative;
+        }
+        a:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: #000000;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+        a:hover:after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
+        }
+      }
+    }
+    .copyright {
+      margin-top: 150px;
+      line-height: 10px;
+      p {
+        a {
+          text-decoration: none;
+          font-weight: var.$font-weight-bold;
+          color: var.$text-color-base;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .hamburger-menu {
+    visibility: hidden;
+  }
+}
+@include mix.tablet-styles {
+  .navbar {
+    position: unset;
+    padding: 10px;
+    .inner-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+      height: 40px;
+      ul {
+        display: none;
+      }
+      .copyright {
+        display: none;
+      }
+      .hamburger-menu {
+        visibility: visible;
+        border: 2px solid var.$hover-elements-color;
+        padding: 5px;
+        color: var.$hover-elements-color;
+      }
+    }
+  }
+}
+@include mix.mobile-l-styles {
+  .navbar {
+    padding: 15px;
+    .inner-wrap {
+      a {
+        img {
+          max-width: 120px;
+        }
+      }
+    }
+  }
+}
